@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       const result = await response.json();
 
+      messageDiv.setAttribute("role", response.ok ? "status" : "alert");
       messageDiv.textContent = result.detail || result.message;
       messageDiv.className = response.ok ? "success" : "error";
       messageDiv.classList.remove("hidden");
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => messageDiv.classList.add("hidden"), 5000);
     } catch (error) {
       button.disabled = false;
+      messageDiv.setAttribute("role", "alert");
       messageDiv.textContent = "Failed to cancel signup. Please try again.";
       messageDiv.className = "error";
       messageDiv.classList.remove("hidden");
